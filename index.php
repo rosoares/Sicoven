@@ -5,9 +5,12 @@
            function MudaPreco(quant, preco, tot){
                quantidade = $("#"+quant).val();
                valorunit = $("#"+preco).val();
+               valorunit = valorunit.replace(',','.');
                total = quantidade*valorunit;
-               
-               $("#"+tot).val();
+               total = total.toFixed(2);
+               total = total.toString(total);
+               total = total.replace('.',',');
+               $("#"+tot).val(total);
            }
         </script>
         
