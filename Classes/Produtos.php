@@ -5,7 +5,7 @@ class Produtos {
     private $id;
     private $nome;
     private $preco;
-    private $quantidade;
+    private $estoque;
     private $descricao;
     
     function __construct() {
@@ -25,8 +25,8 @@ class Produtos {
         return $this->preco;
     }
 
-    function getQuantidade() {
-        return $this->quantidade;
+    function getEstoque() {
+        return $this->estoque;
     }
 
     function getDescricao() {
@@ -45,8 +45,8 @@ class Produtos {
         $this->preco = $preco;
     }
 
-    function setQuantidade($quantidade) {
-        $this->quantidade = $quantidade;
+    function setEstoque($estoque) {
+        $this->estoque = $estoque;
     }
 
     function setDescricao($descricao) {
@@ -59,7 +59,7 @@ class Produtos {
     }
     
     public function ListaProduto($id){
-        $sql = "SELECT * FROM produto WHERE id = $id";
+        $sql = "SELECT * FROM produtos WHERE id = $id";
         $obj_con = new Conexao();
         $link = $obj_con->Conecta();
         $result = mysqli_query($link, $sql);
@@ -67,7 +67,7 @@ class Produtos {
     }
     
     public function ListaProdutos(){
-        $sql = "SELECT * FROM produto";
+        $sql = "SELECT * FROM produtos";
         $obj_con = new Conexao();
         $link = $obj_con->Conecta();
         if(!$result = mysqli_query($link, $sql)){
@@ -79,7 +79,7 @@ class Produtos {
     }}
     
     public function ListaProdutoCategoria($categoria) {
-        $sql = "SELECT * FROM produto ";
+        $sql = "SELECT * FROM produtos ";
         #terminar essa função
     }
 }

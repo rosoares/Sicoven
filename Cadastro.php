@@ -136,13 +136,13 @@ and open the template in the editor.
         <form name="Cadastro" onSubmit="ValidaSenhas(this); return false; this.Cadastrar.disabled=true;" action="Cadastrando.php" method="post">
             <div class="text-center"><h3 class="page-header">Informações do Usuário</h3></div>
     <div class="row">
-        <div class="form-group col-md-offset-2">
+        <div class="form-group col-md-offset-3">
             <div class="form-group col-md-4">
               <label for="campo1">Nome :</label>
-              <input type="text" name="nome" class="form-control" id="nome" required="">
+              <input type="text" name="nome" class="form-control" id="nome" required="" placeholder="Ex.: José Silva">
               <br />
               <label for="campo1">E-mail :</label>
-              <input type="email" name="email" class="form-control" id="email"required="">
+              <input type="email" name="email" class="form-control" id="email" required="" placeholder="Ex.: 123@456.com">
             </div>
 
             <div id="divsenha" class="form-group col-md-4">
@@ -157,41 +157,67 @@ and open the template in the editor.
     
             <div class="text-center"><h3 class="page-header">Informações de Endereço do Usuário</h3></div>
     <div class="row">
-        <div class="form-group col-md-offset-2">
+        <div class="form-group col-md-offset-3">
             <div class="form-group col-md-4">
               <label for="campo1">CEP :</label>
-              <input type="text" name="cep" class="form-control" id="cep" maxlength="9" required="">
+              <input type="text" name="cep" class="form-control" id="cep" maxlength="9" required="" placeholder="Ex.: 39400-000">
               <a href="http://www.buscacep.correios.com.br/sistemas/buscacep/buscaCepEndereco.cfm"  target="_blank">Não sei meu CEP </a>
               <br />
               <label for="campo1">Bairro :</label>
-              <input type="text" name="bairro" class="form-control" id="bairro" required="">
+              <input type="text" name="bairro" class="form-control" id="bairro" required="" placeholder="Ex.: Centro">
             </div>
             
             <div class="form-group col-md-4">
               <label for="campo1">Rua :</label>
-              <input type="text" name="rua" class="form-control" id="rua" required="">
+              <input type="text" name="rua" class="form-control" id="rua" required="" placeholder="Ex.: Dr. Santos">
               <br />
               <label for="campo1">Número :</label>
-              <input type="text" name="numero" class="form-control" id="numero" required="">
+              <input type="text" name="numero" class="form-control" id="numero" required="" placeholder="Ex.: 1234">
             </div>
         </div>
     </div>
     
     <div class="row">
-        <div class="form-group col-md-offset-2">
+        <div class="form-group col-md-offset-3">
             <div class="form-group col-md-4">
-              <label for="campo1">Complemento :</label>
-              <input type="text" name="complemento" class="form-control" id="complemento">
+              <label for="campo1">Cidade :</label>
+              <input type="text" name="cidade" class="form-control" id="cidade" required="" value="Montes Claros">
               <br />
             </div>
+
+            <div class="form-group col-md-4">
+              <label for="campo1">Estado :</label>
+              <input type="text" name="estado" class="form-control" id="estado" required="" value="Minas Gerais">
+              <br />
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-offset-3">
+            <div class="form-group col-md-4">
+              <label for="campo1">Complemento :</label>
+              <input type="text" name="complemento" class="form-control" id="complemento" placeholder="Ex.: Apartamento...">
+              <br />
+            </div>
+
             <div class="form-group col-md-4">
                 <label for="campo1">Referência :</label>
-                <textarea class="form-control" name="referencia" id="referencia"></textarea>
+                <textarea class="form-control" name="referencia" id="referencia" placeholder="..."></textarea>
+                <br />
             </div>
         </div>
     </div>
+
+    <div class="row">
+      <div class="text-center">
+        <p>Obs.: Os serviços oferecidos por este site, atendem somente a região de Montes Claros.</p>
+      </div>
+    </div>
+
   <hr />
-  <div class="form-group col-md-offset-5">
+  <div class="text-center">
     <div id="actions" class="row">
       <div class="col-md-12">
           <button type="submit" name="Cadastrar" class="btn btn-primary">Cadastrar</button>
@@ -205,5 +231,9 @@ and open the template in the editor.
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+
+    <div>
+      .
+    </div>
   </body>
 </html>

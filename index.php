@@ -12,6 +12,10 @@
                total = total.replace('.',',');
                $("#"+tot).val(total);
            }
+           
+           function AddProd(quant, preco){
+               
+           }
         </script>
         
         <div class="container">
@@ -37,7 +41,7 @@
                                     <div>
                                         <!-- <button id="add"><span class="glyphicon glyphicon-plus-sign"></span></button> -->
                                         <div class="col-md-3">
-                                            <input id="quant<?php echo $row['id'] ?>" type="number" value="1" class="form-control" name="quant<?php echo $row['id'] ?>" min="1" max="<?php echo $row['quantidade'] ?>" onchange="MudaPreco('quant<?php echo $row['id'] ?>', 'precoconst<?php echo $row['id'] ?>', 'total<?php echo $row['id'] ?>')">
+                                            <input id="quant<?php echo $row['id'] ?>" type="number" value="1" class="form-control" name="quant<?php echo $row['id'] ?>" min="1" max="<?php echo $row['estoque'] ?>" onchange="MudaPreco('quant<?php echo $row['id'] ?>', 'precoconst<?php echo $row['id'] ?>', 'total<?php echo $row['id'] ?>')">
                                         </div>
                                         <!-- <button id="rem"><span class="glyphicon glyphicon-minus-sign"></span></button> -->
                                     </div>
@@ -49,7 +53,7 @@
                                         <label>Total (R$)</label>
                                         <input id="total<?php echo $row['id'] ?>" class="form-control" type="text" name="total" value= "<?php echo $row['preco'] ?>" readonly="">
                                         <br>
-                                        <button type="button" class="btn btn-warning"onclick="">
+                                        <button type="button" class="btn btn-warning"onclick="AddProd('quant<?php echo $row['id'] ?>', 'precoconst<?php echo $row['id'] ?>')">
                                             <span class="glyphicon glyphicon-shopping-cart"></span> Adicionar
                                         </button> 
 
