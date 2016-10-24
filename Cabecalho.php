@@ -2,12 +2,13 @@
 include_once './Classes/Carrinho.php';
 include_once './Classes/Produtos.php';
 session_start();
-if(empty($_SESSION['carrinho'])){
+/*if(empty($_SESSION['carrinho'])){
     $_SESSION['carrinho'] = new Carrinho();
-}
+} */
 if(empty($_SESSION['usuario'])){
     $_SESSION['usuario'] = "";
 }
+
 ?>
 <!DOCTYPE html>
 <html>

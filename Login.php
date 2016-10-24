@@ -26,7 +26,7 @@ and open the template in the editor.
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <script>
                 $(document).ready(function(){
-                $('#errolog').hide(); //Esconde o elemento com id errolog
+                 //Esconde o elemento com id errolog
                 $('#form-login').submit(function(){ 	//Ao submeter formulário
 		var email=$('#Email').val();
 		var senha=$('#Senha').val();	//Pega valor do campo senha
@@ -36,7 +36,7 @@ and open the template in the editor.
 			data: "&email="+email+"&senha="+senha,	//Dados
    			success: function (result){			//Sucesso no AJAX
                 		if(result==1 ){						
-                                    location.href='index.php'	//Redireciona
+                            location.href='index.php'	//Redireciona
                 		}
                       
                        else{

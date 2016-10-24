@@ -5,7 +5,7 @@ class Produtos {
     private $id;
     private $nome;
     private $preco;
-    private $estoque;
+    private $quantidade;
     private $descricao;
     
     function __construct() {
@@ -25,8 +25,8 @@ class Produtos {
         return $this->preco;
     }
 
-    function getEstoque() {
-        return $this->estoque;
+    function getQuantidade() {
+        return $this->quantidade;
     }
 
     function getDescricao() {
@@ -45,8 +45,8 @@ class Produtos {
         $this->preco = $preco;
     }
 
-    function setEstoque($estoque) {
-        $this->estoque = $estoque;
+    function setQuantidade($quantidade) {
+        $this->quantidade = $quantidade;
     }
 
     function setDescricao($descricao) {
@@ -65,6 +65,7 @@ class Produtos {
         $result = mysqli_query($link, $sql);
         return $result;
     }
+
     
     public function ListaProdutos(){
         $sql = "SELECT * FROM produtos";

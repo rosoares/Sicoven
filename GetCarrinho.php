@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 include './Cabecalho.php';
 ?>
 <br><br><br><br>
@@ -19,11 +18,12 @@ include './Cabecalho.php';
                 </thead>
                 <tbody>
                     <?php
+                    var_dump($_SESSION['carrinho']);
                     $prod_no_carrinho = $_SESSION['carrinho']->RetornaProdutos();
                     foreach ($prod_no_carrinho as $row) {
                         ?>
                         <tr>
-                            <td><img src="..."></td>
+                            <td><?php echo $_SESSION['carrinho']->RetornaCont() ?><!--<img src="..."> --></td>
                             <td><?php echo $row->getNome()?></td>
                             <td><?php echo $row->getQuantidade()?></td>
                             <td><?php echo $row->getPreco()?></td>

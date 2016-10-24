@@ -13,8 +13,19 @@
                $("#"+tot).val(total);
            }
            
-           function AddProd(quant, preco){
-               
+           function AddProd( id,quant, nome){
+               var Id = id;
+               var Qt = $("#"+quant).val();
+               $.ajax({
+                   data: "&id="+Id+"&qt="+Qt,
+                   type: "post",
+                   url: "AddProd.php",
+                   success:
+                   		function (result) {
+                   			alert(nome+ ' Adiconado ao carrinho');
+                   			location.reload();
+                   		}
+               })
            }
         </script>
         
@@ -53,7 +64,7 @@
                                         <label>Total (R$)</label>
                                         <input id="total<?php echo $row['id'] ?>" class="form-control" type="text" name="total" value= "<?php echo $row['preco'] ?>" readonly="">
                                         <br>
-                                        <button type="button" class="btn btn-warning"onclick="AddProd('quant<?php echo $row['id'] ?>', 'precoconst<?php echo $row['id'] ?>')">
+										<button type="button" class="btn btn-warning" onclick="AddProd('<?php echo $row['id'] ?>' ,'quant<?php echo $row['id'] ?>', '<?php echo $row['nome'] ?>')">
                                             <span class="glyphicon glyphicon-shopping-cart"></span> Adicionar
                                         </button> 
 

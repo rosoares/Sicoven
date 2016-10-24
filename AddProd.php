@@ -2,26 +2,28 @@
 
     include_once './Classes/Produtos.php';
     include_once './Classes/Carrinho.php';
+    session_start();
     if(empty($_SESSION)){
-        header("Locarion: Foi.php");
+        header("Location: Foi.php");
     }
         
-    session_start();
     
     $obj_prod = new Produtos();
     $id = $_POST['id'];
     $qt = $_POST['qt'];
-    $nome = $_POST['nome'];
-    $preco = $_POST['preco'];
-    $descricao = '';
+    $result = $obj_prod->ListaProduto($id);
+    $produto = mysqli_fetch_array($result);
     
     $obj_prod->setId($id);
+    $obj_prod->setNome($produto['nome']);
     $obj_prod->setQuantidade($qt);
-    $obj_prod->setNome($nome);
-    $obj_prod->setPreco($preco);
+    $obj_prod->setPreco($produto['preco']);
+    $obj_prod->setDescricao($produto['descricao']);
+
+    if($_SESSION['carrinho']->Adiciona($obj_prod)){
+        echo 1;
+    }
+    else
+        echo 0;
     
-    $_SESSION['carrinho']->Adiciona($obj_prod);
-    $totitems = $_SESSION['carrinho']->TotalItems();
-    $totpreco = $_SESSION['carrinho']->PrecoTotal();
-    echo '<a id="link-carrinho" href="GetCarrinho.php"><button type="button" class="btn btn-success navbar-btn"> <span class="glyphicon glyphicon-shopping-cart"></span> Carrinho <span class="badge">'.$totitems.'</span> </button></a>';
 ?>
