@@ -4,7 +4,15 @@
     include_once './Produtos.php';
     
     $carrinho = new Carrinho();
-    
+
+
+    $obj_prod = new Produtos();
+    $obj_prod->setId(1);
+    $obj_prod->setNome("Pão");
+    $obj_prod->setQuantidade(5);
+    $obj_prod->setPreco(10.52);
+    $obj_prod->setDescricao('');
+
     $obj_prod1 = new Produtos();
     $obj_prod1->setId(1);
     $obj_prod1->setNome("Pão");
@@ -42,7 +50,7 @@
 
     $obj_prod6 = new Produtos();
     $obj_prod6->setId(4);
-    $obj_prod6->setNome("Bolo de Limão");
+    $obj_prod6->setNome("Bolo de Laranja");
     $obj_prod6->setQuantidade(1);
     $obj_prod6->setPreco(25);
     $obj_prod6->setDescricao('');
@@ -52,8 +60,9 @@
     $carrinho->Adiciona($obj_prod2);
     $carrinho->Adiciona($obj_prod3);
     $carrinho->Adiciona($obj_prod4);
-    $carrinho->Adiciona($obj_prod5);
-    $carrinho->Adiciona($obj_prod6);
+    //$carrinho->Adiciona($obj_prod4);
+    //$carrinho->Adiciona($obj_prod5);
+    //$carrinho->Adiciona($obj_prod6);
 
 
     var_dump($carrinho);

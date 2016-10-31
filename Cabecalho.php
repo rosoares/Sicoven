@@ -2,9 +2,9 @@
 include_once './Classes/Carrinho.php';
 include_once './Classes/Produtos.php';
 session_start();
-/*if(empty($_SESSION['carrinho'])){
+if(empty($_SESSION['carrinho'])){
     $_SESSION['carrinho'] = new Carrinho();
-} */
+} 
 if(empty($_SESSION['usuario'])){
     $_SESSION['usuario'] = "";
 }
@@ -24,7 +24,7 @@ if(empty($_SESSION['usuario'])){
         <link href="css/bootstrap-social.css" rel="stylesheet">
         <link href="css/style.css">
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/jquery-3.1.1.min.js"></script>
         
     </head>
     <body>

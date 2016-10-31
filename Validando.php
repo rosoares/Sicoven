@@ -13,6 +13,8 @@
         echo 1;
         session_start();
         $_SESSION['carrinho'] = new Carrinho();
+        $_SESSION['carrinho'];
+        $_SESSION['num_prod'] = 0;
         $_SESSION['usuario'] = $result_login['nome'];
         $_SESSION['id'] = $result_login['id'];
         exit();

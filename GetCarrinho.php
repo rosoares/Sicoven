@@ -1,6 +1,43 @@
 <?php
 include './Cabecalho.php';
+error_reporting(0);
 ?>
+
+<script>
+    function MudaSubTotal(quant, preco, id){
+        var qt = $("#"+quant).val();
+        preco = preco.replace(',','.');
+        var subtot = qt*preco;
+        subtot = subtot.toFixed(2);
+        subtot = subtot.toString(subtot);
+        subtot = subtot.replace('.',',');
+        $("#SubTotal"+id).html('R$ '+subtot);
+        alert(total);
+        $.ajax({
+            data: "&preco="+preco+"&quantidade="+qt,
+            url: "AtualizaTotal.php",
+            type: "post",
+            success: 
+                function(result){
+                    alert(result);
+                }
+        })
+} 
+
+    function RemoveProd(id){
+        $.ajax({
+            data: "&id="+id,
+            type: "post",
+            url: "RemoveProd.php",
+            success:
+                function(result){
+                    alert("Removido");
+                    location.reload();
+                }
+        })
+    }
+</script>
+
 <br><br><br><br>
 <div class="container">
     <div class="row">
@@ -9,31 +46,53 @@ include './Cabecalho.php';
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th class="col-xs-2">#</th>
+                        <th class="col-xs-2"><?php echo $_SESSION['num_prod'] ?></th>
                         <th class="col-xs-3">Nome</th>
-                        <th class="col-xs-2">Quantidade</th>
-                        <th class="col-xs-3">Preço</th>
+                        <th class="col-xs-1">Quantidade</th>
+                        <th class="col-xs-1"></th>
+                        <th class="col-xs-4">Preço Unitário</th>
                         <th class="col-xs-3">Sub-Total</th>
+                        <th class="col-xs-2"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    var_dump($_SESSION['carrinho']);
                     $prod_no_carrinho = $_SESSION['carrinho']->RetornaProdutos();
+                    $totalvetor = count($prod_no_carrinho); //numero de itens no carrinho 
                     foreach ($prod_no_carrinho as $row) {
+                        $info_prod = mysqli_fetch_array($row->ListaProduto($row->getId()));
+                        // Muda o preço do carrinho pelo preço do banco para evitar fraude
+                        $row->setPreco($info_prod['preco']); 
                         ?>
                         <tr>
-                            <td><?php echo $_SESSION['carrinho']->RetornaCont() ?><!--<img src="..."> --></td>
+                            <td><img src="..."></td>
                             <td><?php echo $row->getNome()?></td>
-                            <td><?php echo $row->getQuantidade()?></td>
+                            <!-- Campo de quantidade -->
+                            <td><input id="quant<?php echo $row->getId() ?>" class="form-control" type="number" name="Quantidade" min="1" max="<?php echo $info_prod['estoque'] ?>" value="<?php echo $row->getQuantidade()?>" onchange="MudaSubTotal('quant<?php echo $row->getId() ?>', '<?php echo $row->getPreco() ?>', '<?php echo $row->getId() ?>',);"></td>
+                            <td></td>
+                            <!-- Campo e Preço --> 
                             <td><?php echo $row->getPreco()?></td>
-                            <td><?php echo $row->getQuantidade()*$row->getPreco()?></td>
+                            <td id="SubTotal<?php echo $row->getId() ?>"><?php
+                                if(strlen($row->getSubtotal())==2){
+                                    echo 'R$ '.$row->getSubtotal().',00';     
+                                }
+                                else if(strlen($row->getSubtotal())==1){
+                                    echo 'R$ '.$row->getSubtotal().',00'; 
+                                }
+                                else{
+                                    echo 'R$ '.$row->getSubtotal();
+                                }   
+                            ?>
+                            </td>
+                            </div>
+                            <td><button class="btn btn-danger" onclick="RemoveProd(<?php echo $row->getId() ?>)">Remover</button></td>
                         </tr>
                         <?php
                     }
                     ?>
-                        <tr class="col-xs-offset-5"> 
-                            <td>Total = <?php echo $_SESSION['carrinho']->PrecoTotal(); ?></td>
+
+                        <tr style="position: absolute; left: 80%;"> 
+                            <td id="Total">Total = <?php echo 'R$ '.$_SESSION['carrinho']->PrecoTotal(); ?></td>
                         </tr>
                 </tbody>
             </table>

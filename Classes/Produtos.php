@@ -54,8 +54,11 @@ class Produtos {
     }
     
     function getSubtotal() {
-        $subtot = $this->quantidade*$this->preco;
-        return 'R$ '.$subtot;
+        $preco = str_replace(',', '.', $this->preco);
+        $quantidade = str_replace(',', '.', $this->quantidade);
+        $subtot = $preco*$quantidade;
+        $subtot = str_replace('.', ',', $subtot);
+        return $subtot;
     }
     
     public function ListaProduto($id){

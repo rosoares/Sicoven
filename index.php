@@ -22,7 +22,7 @@
                    url: "AddProd.php",
                    success:
                    		function (result) {
-                   			alert(nome+ ' Adiconado ao carrinho');
+                   			alert(nome+' Adicionado ao carrinho');
                    			location.reload();
                    		}
                })
@@ -64,10 +64,21 @@
                                         <label>Total (R$)</label>
                                         <input id="total<?php echo $row['id'] ?>" class="form-control" type="text" name="total" value= "<?php echo $row['preco'] ?>" readonly="">
                                         <br>
-										<button type="button" class="btn btn-warning" onclick="AddProd('<?php echo $row['id'] ?>' ,'quant<?php echo $row['id'] ?>', '<?php echo $row['nome'] ?>')">
-                                            <span class="glyphicon glyphicon-shopping-cart"></span> Adicionar
+                                        <?php 
+                                        if(!empty($_SESSION['usuario'])){ ?>
+                                            <button type="button" class="btn btn-warning" onclick="AddProd('<?php echo $row['id'] ?>' ,'quant<?php echo $row['id'] ?>', '<?php echo $row['nome'] ?>')">
+                                                <span class="glyphicon glyphicon-shopping-cart"></span> Adicionar
+                                            </button> 
+                                        <?php
+                                        } else{
+                                        ?>
+                                        <a href="Login.php"><button type="button" class="btn btn-warning" >
+                                                <span class="glyphicon glyphicon-shopping-cart"></span> Adicionar
                                         </button> 
-
+                                        </a>
+                                        <?php    
+                                        }   
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -75,6 +86,7 @@
                     </div>
                 <?php 
                     }
+                    
                 ?>
             </div>
         </div>

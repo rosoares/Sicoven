@@ -5,10 +5,18 @@ include_once 'Produtos.php';
 
 class Carrinho {
 
-    public $produtos; //array de produtos;
+    public $produtos = array(); //array de produtos;
     public static $cont = 0;
+    
+    function __construct() {
+        if (!isset($_SESSION['carrinho'])) {
+            $produtos = array();
+            self::$cont=0;
+        }
+    } 
 
-    public function Adiciona(Produtos $produto) {
+    
+    /*public function Adiciona(Produtos $produto) {
 
         if (self::$cont == 0) {
             $this->produtos[self::$cont] = $produto;
@@ -27,6 +35,27 @@ class Carrinho {
                 }
             }
         }
+        echo 'cont carrinho: '.self::$cont.'<br>';
+        return true;
+    } */
+
+    public function Adiciona($produto)
+    {
+        if (empty($this->produtos)) {
+            $this->produtos[0] = $produto;
+        }
+        else{
+            for($i=0; $i<count($this->produtos); $i++){
+                if($this->produtos[$i]->getId() == $produto->getId()){
+                    $this->produtos[$i] = $produto;
+                    break;
+                }
+                if($i == count($this->produtos)-1){
+                    $this->produtos[] = $produto;
+                    break;
+                }
+            }
+        }
         return true;
     }
 
@@ -37,11 +66,17 @@ class Carrinho {
 
     public function Remove($posicao) {
         $tot = count($this->produtos);
-        unset($this->produtos[$posicao]);
-        for ($i = $posicao; $i < $tot - 1; $i++) {
-            $this->produtos[$i] = $this->produtos[$i + 1];
-            unset($this->produtos[$i + 1]);
+        if($tot == $posicao){
+            unset($this->produtos[$tot-1]);
         }
+        else if($posicao == 0){
+            unset($this->produtos[0]); 
+            sort($this->produtos);
+        }
+        else{
+            unset($this->produtos[$posicao-1]);
+            sort($this->produtos);
+        } 
     }
 
     public function RetornaProdutos() {
@@ -74,9 +109,12 @@ class Carrinho {
             return 0;
         } else {
             foreach ($this->produtos as $produto) {
-                $total+= $produto->getQuantidade() * $produto->getPreco();
+                $quantidade = $produto->getQuantidade();
+                $preco = $produto->getPreco();
+                $preco = str_replace(',', '.', $preco);
+                $total += $preco * $quantidade;
             }
-            return $total;
+            return str_replace('.', ',', $total);
         }
     }
 

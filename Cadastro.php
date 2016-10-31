@@ -177,7 +177,7 @@ and open the template in the editor.
         </div>
     </div>
     
-    <div class="row">
+    <!-- <div class="row">
         <div class="form-group col-md-offset-3">
             <div class="form-group col-md-4">
               <label for="campo1">Cidade :</label>
@@ -193,7 +193,7 @@ and open the template in the editor.
 
         </div>
     </div>
-
+    -->
     <div class="row">
         <div class="form-group col-md-offset-3">
             <div class="form-group col-md-4">
