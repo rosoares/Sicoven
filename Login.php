@@ -73,7 +73,7 @@ and open the template in the editor.
             FB.init({
             appId      : '549732731880522',
             xfbml      : true,
-            version    : 'v2.7'
+            version    : 'v2.8'
                 });
              
                     FB.getLoginStatus(function(response){

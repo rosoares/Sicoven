@@ -8,6 +8,10 @@ if (empty($_SESSION['carrinho'])) {
 if (empty($_SESSION['usuario'])) {
     $_SESSION['usuario'] = "";
 }
+
+$produtos = new Produtos();
+
+$result_menu = $produtos->ListaCategorias(); 
 ?>
 <!DOCTYPE html>
 <html>
@@ -83,22 +87,18 @@ if (empty($_SESSION['usuario'])) {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="#"><strong>Padaria</strong></a></li>
-        </ul>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Mercearia</a></li>
-        <li><a href="#">Bomboniere</a></li>
-        <li><a href="#">Confeitaria</a></li>
-        <li><a href="#">Lanchonete</a></li>
+      <?php while($categorias = mysqli_fetch_array($result_menu)){ ?>
+        <li><a href="index.php?cat=<?php echo $categorias['id'] ?>"><?php echo $categorias['nome'] ?></a></li>
+      <?php } ?>
       </ul>
-      <form class="navbar-form navbar-left">
+      <form action="" method="get" class="navbar-form navbar-left">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Pesquisar">
+          <input name="Pesquisa" type="text" class="form-control" placeholder="Pesquisar">
         </div>
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
       </form>
