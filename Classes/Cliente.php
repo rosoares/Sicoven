@@ -90,7 +90,15 @@ include_once './Conexao.php';
             $this->Complemento = $Complemento;
         }
 
-                
+        public function RetornaDados($id)
+        {
+            $conexao = new Conexao();
+            $link = $conexao->Conecta();
+            $sql = "SELECT * FROM clientes WHERE id = ".$id."";
+            $result = mysqli_query($link, $sql);
+            $cliente = mysqli_fetch_array($result);
+            return $cliente;
+        }
         
         public function Cadastra() {
             $obj_con = new Conexao();

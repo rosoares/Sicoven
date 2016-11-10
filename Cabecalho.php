@@ -2,13 +2,12 @@
 include_once './Classes/Carrinho.php';
 include_once './Classes/Produtos.php';
 session_start();
-if(empty($_SESSION['carrinho'])){
+if (empty($_SESSION['carrinho'])) {
     $_SESSION['carrinho'] = new Carrinho();
-} 
-if(empty($_SESSION['usuario'])){
+}
+if (empty($_SESSION['usuario'])) {
     $_SESSION['usuario'] = "";
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,60 +24,91 @@ if(empty($_SESSION['usuario'])){
         <link href="css/style.css">
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <script src="js/jquery-3.1.1.min.js"></script>
-        
+
     </head>
     <body>
         <script type="text/javascript" src="js/bootstrap.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <nav class="navbar navbar-fixed-top navbar-default">
+        <nav class="navbar navbar-fixed-top navbar-default " style="background-color:yellow">
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#"></a>
-                </div>
-                <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                    <div class="text-right" id="btn-carrinho">   
-                        <?php 
-                        if(!empty($_SESSION['usuario'])){
-                        ?>
-                        <span style="position: absolute; top: 5pt; right: 15px;">
-                            <ul class="nav nav-pills">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="Logout.php" role="button" aria-haspopup="true" aria-expanded="false">Olá <?php echo $_SESSION['usuario'] ?></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#">One more separated link</a></li>
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        
+                        <a class="navbar-brand" href="index.php">
+                            logo
+                        </a>
+                    </div>
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <?php if(!empty($_SESSION['usuario'])){ ?>
+                        <p style="position: relative; left: 40%" class="navbar-text">
+                        Logado como <?php echo $_SESSION['usuario'] ?></p>
+                        <?php  } ?>
+                        <div class="text-right" id="btn-carrinho">  
+                            
+                            <?php
+                            if (!empty($_SESSION['usuario'])) {
+                                ?>
+                                <span style="position: absolute; top: 5pt; right: 15px;">
+                                    <ul class="nav nav-pills">
+                                        <li class="dropdown">
+                                            <a href="Logout.php">Sair</a>
+                                        </li>
                                     </ul>
-                                </li>
-                            </ul>
-                        </span>
-                        <div style="position: relative; right: 18pt; top: 1pt;"><a id="link-carrinho" href="GetCarrinho.php"><button type="button" class="btn btn-success navbar-btn"> <span class="glyphicon glyphicon-shopping-cart"></span> Carrinho <span class="badge"><?php echo $_SESSION['carrinho']->TotalItems(); ?></span> </button></a></div>
-                        <?php
-                        }
-                        else{
-                        ?>
-                        <a href="Login.php"><button class="btn btn-success navbar-btn">Login</button></a>
-                        <a href="Cadastro.php"><button class="btn btn-success navbar-btn">Cadastre-se</button></a>
-                  <?php }?>
-                    </div> 
-                </div>
-                <!-- /.nav-collapse -->
-            </div><!-- /.container -->
-        </nav><!-- /.navbar -->
+                                </span>
+                                <div style="position: absolute; right: 8%; top: 1pt;"><a id="link-carrinho" href="GetCarrinho.php"><button type="button" class="btn btn-success navbar-btn"> <span class="glyphicon glyphicon-shopping-cart"></span> Carrinho <span class="badge"><?php echo $_SESSION['carrinho']->TotalItems(); ?></span> </button></a></div>
+                                <?php
+                            } else {
+                                ?>
+                                <a href="Login.php"><button class="btn btn-success navbar-btn"style="background-color:black">Login</button></a>
+                                <a href="Cadastro.php"><button class="btn btn-success navbar-btn"style="background-color:black">Cadastre-se</button></a>
+<?php } ?>
+                        </div> 
+                    </div>
+                    <!-- /.nav-collapse -->
+                </div><!-- /.container -->
+                <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#"><strong>Padaria</strong></a></li>
+        </ul>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Mercearia</a></li>
+        <li><a href="#">Bomboniere</a></li>
+        <li><a href="#">Confeitaria</a></li>
+        <li><a href="#">Lanchonete</a></li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Pesquisar">
+        </div>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </form>
+      
         
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+        </nav><!-- /.navbar -->
+
+<br><br><br><br><br><br>
+
+  

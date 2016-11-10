@@ -94,10 +94,11 @@ and open the template in the editor.
                     if(response.status === 'connected'){
                         FB.api('/me', 'GET', {fields: 'first_name, id'}, function(response){
                         var nome = response.first_name;
+                        var id = response.id;
                         $.ajax({
                             url: 'SessaoFace.php',
                             type: "post",
-                            data: "&user="+nome,
+                            data: "&user="+nome+"&id="+id,
                             success: function(result){
                             location.href = "index.php";
                             }

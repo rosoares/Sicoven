@@ -118,4 +118,29 @@ class Carrinho {
         }
     }
 
+    public function FinalizarPedido($idcliente, $tipoentrega, $rua, $bairro, $numero, $referencias, $complemento, $troco){
+        $conexao = new Conexao();
+        $link = $conexao->Conecta();
+        $total = $this->PrecoTotal();
+        $sql = "INSERT INTO pedidos (id_cliente, tipo_entrega, rua, bairro, numero, referencias, complemento, valor_total, troco) VALUES"
+                . "($idcliente, $tipoentrega, '$rua', '$bairro', '$numero', '$referencias', '$complemento', '$total', '$troco')";
+        mysqli_query($link, $sql);
+        
+        $sql_id_pedido = "SELECT MAX(id) AS id_pedido FROM pedidos WHERE id_cliente = ".$idcliente."" ;
+        $result = mysqli_query($link,$sql_id_pedido);
+
+        $row = mysqli_fetch_array($result);
+        $id_pedido = $row[0];
+
+        foreach ($this->produtos as $produto) {
+            $id = $produto->getId();
+            $quantidade = $produto->getQuantidade();
+            $sub_total = $produto->getSubtotal();
+            $sql_prod_pedido = "INSERT INTO produtos_pedido (id_pedido, id_produto, quantidade, sub_total) VALUES ($id_pedido, $id, $quantidade, '$sub_total')";
+            if(!mysqli_query($link,$sql_prod_pedido)){
+                echo mysqli_error($link);
+            }
+        } 
+    }
+
 }

@@ -7,19 +7,13 @@ error_reporting(0);
     function MudaSubTotal(quant, preco, id){
         var qt = $("#"+quant).val();
         preco = preco.replace(',','.');
-        var subtot = qt*preco;
-        subtot = subtot.toFixed(2);
-        subtot = subtot.toString(subtot);
-        subtot = subtot.replace('.',',');
-        $("#SubTotal"+id).html('R$ '+subtot);
-        alert(total);
         $.ajax({
-            data: "&preco="+preco+"&quantidade="+qt,
+            data: "&preco="+preco+"&quantidade="+qt+"&id="+id,
             url: "AtualizaTotal.php",
             type: "post",
             success: 
                 function(result){
-                    alert(result);
+                    location.reload();
                 }
         })
 } 
@@ -46,7 +40,7 @@ error_reporting(0);
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th class="col-xs-2"><?php echo $_SESSION['num_prod'] ?></th>
+                        <th class="col-xs-2"></th>
                         <th class="col-xs-3">Nome</th>
                         <th class="col-xs-1">Quantidade</th>
                         <th class="col-xs-1"></th>
@@ -68,7 +62,7 @@ error_reporting(0);
                             <td><img src="..."></td>
                             <td><?php echo $row->getNome()?></td>
                             <!-- Campo de quantidade -->
-                            <td><input id="quant<?php echo $row->getId() ?>" class="form-control" type="number" name="Quantidade" min="1" max="<?php echo $info_prod['estoque'] ?>" value="<?php echo $row->getQuantidade()?>" onchange="MudaSubTotal('quant<?php echo $row->getId() ?>', '<?php echo $row->getPreco() ?>', '<?php echo $row->getId() ?>',);"></td>
+                            <td><input id="quant<?php echo $row->getId() ?>" class="form-control" type="number" name="Quantidade" min="1" max="<?php echo $info_prod['estoque'] ?>" value="<?php echo $row->getQuantidade()?>" onchange="MudaSubTotal('quant<?php echo $row->getId() ?>', '<?php echo $row->getPreco() ?>', '<?php echo $row->getId() ?>');"></td>
                             <td></td>
                             <!-- Campo e Preço --> 
                             <td><?php echo $row->getPreco()?></td>
@@ -89,15 +83,15 @@ error_reporting(0);
                         </tr>
                         <?php
                     }
-                    ?>
-
-                        <tr style="position: absolute; left: 80%;"> 
-                            <td id="Total">Total = <?php echo 'R$ '.$_SESSION['carrinho']->PrecoTotal(); ?></td>
-                        </tr>
+                    ?>    
                 </tbody>
             </table>
-        </div>
-
+                <hr>
+                <div style="font-size: 180%;" align="right">
+                    <strong>Total = <?php echo 'R$ '.$_SESSION['carrinho']->PrecoTotal() ?></strong>
+                </div>
+            <a href="FinalizarCompra.php"><button class="btn btn-success">Finalizar Compra</button></a>
+        </div> 
     </div>
 </div>
 </body>

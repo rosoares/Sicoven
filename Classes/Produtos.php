@@ -69,6 +69,15 @@ class Produtos {
         return $result;
     }
 
+    public function ListaCategorias()
+    {
+        $sql = "SELECT * FROM categorias";
+        $conexao = new Conexao();
+        $link = $conexao->Conecta();
+        $result = mysqli_query($link, $sql);
+        return $result;
+    }
+
     
     public function ListaProdutos(){
         $sql = "SELECT * FROM produtos";
@@ -83,7 +92,19 @@ class Produtos {
     }}
     
     public function ListaProdutoCategoria($categoria) {
-        $sql = "SELECT * FROM produtos ";
-        #terminar essa função
+        $sql = "SELECT * FROM produtos WHERE id_categoria = ".$categoria."";
+        $conexao = new Conexao();
+        $link = $conexao->Conecta();
+        $result = mysqli_query($link, $sql);
+        return $result;
+    }
+
+    public function PesquisaProdutos($expressao)
+    {
+        $sql = "SELECT * FROM produtos WHERE nome LIKE '%".$expressao."%' ";
+        $conexao = new Conexao();
+        $link = $conexao->Conecta();
+        $result = mysqli_query($link,$sql);
+        return $result;
     }
 }
