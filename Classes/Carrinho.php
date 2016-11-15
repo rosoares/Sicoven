@@ -137,6 +137,10 @@ class Carrinho {
             $quantidade = $produto->getQuantidade();
             $sub_total = $produto->getSubtotal();
             $sql_prod_pedido = "INSERT INTO produtos_pedido (id_pedido, id_produto, quantidade, sub_total) VALUES ($id_pedido, $id, $quantidade, '$sub_total')";
+            $sql_decrementa_estoque = "UPDATE produtos SET estoque = estoque - $quantidade WHERE id = $id";
+            if (!mysqli_query($link, $sql_decrementa_estoque)) {
+                echo mysqli_error($link);
+            }
             if(!mysqli_query($link,$sql_prod_pedido)){
                 echo mysqli_error($link);
             }

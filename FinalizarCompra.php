@@ -73,35 +73,35 @@ error_reporting(0);
     	<div class="row">
     		<div class="col-xs-4">
     			<label>Rua:</label>
-    			<input required="" name="rua" class="form-control" type="text" name="Rua">
+    			<input  name="rua" class="form-control" type="text">
     		</div>
     	</div>
     	<br>
     	<div class="row">
     		<div class="col-xs-3">
     			<label>Bairro:</label>
-    			<input required="" name="bairro" class="form-control" type="text" name="Bairro">
+    			<input  name="bairro" class="form-control" type="text" >
     		</div>
     	</div>
     	<br>
     	<div class="row">
     		<div class="col-xs-1">
     			<label>Número:</label>
-    			<input required="" name="numero" class="form-control" type="text" name="Numero">
+    			<input  name="numero" class="form-control" type="text" >
     		</div>
     	</div>
     	<br>
     	<div class="row">
     		<div class="col-xs-4">
     			<label>Complemento:</label>
-    			<input name="complemento" class="form-control" type="text" name="Complemento">
+    			<input name="complemento" class="form-control" type="text" >
     		</div>
     	</div>
     	<br>
     	<div class="row">
     		<div class="col-xs-4">
     			<label>Referências:</label>
-    			<input name="referencias" class="form-control" type="text" name="Referencias">
+    			<input name="referencias" class="form-control" type="text">
     		</div>
     	</div>
     	<hr>
@@ -109,7 +109,7 @@ error_reporting(0);
     <div id="troco">
         <div class="row">
             <div class="col-xs-2">
-                <label>Troco (R$):</label>
+                <label>Troco para (R$):</label>
                 <input name="troco" class="form-control" maxlength="5" type="text" name="troco" onkeypress="MascaraTroco(this)">
             </div>
         </div>

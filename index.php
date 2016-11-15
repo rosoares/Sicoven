@@ -54,7 +54,7 @@ include_once './Cabecalho.php';
 
             <div id="prod" class="col-sm-6 col-md-4">
                 <div class="thumbnail">
-                    <img src="..." alt="..." width="200" height="242">
+                    <img src="<?php echo $row['img']; ?>" alt="..." width="200" height="242">
                     <div class="caption">
                         <h3><?php echo $row['nome'] ?></h3>
                         <p></p>

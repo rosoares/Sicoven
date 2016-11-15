@@ -1,6 +1,6 @@
 <?php 
 
-include_once './Conexao.php';
+include_once 'Conexao.php';
 
     class Cliente {
         private $id;

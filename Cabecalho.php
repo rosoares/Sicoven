@@ -34,7 +34,7 @@ $result_menu = $produtos->ListaCategorias();
         <script type="text/javascript" src="js/bootstrap.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <nav class="navbar navbar-fixed-top navbar-default " style="background-color:yellow">
+        <nav class="navbar navbar-fixed-top navbar-default " style="background-color: rgb(238, 162, 54);">
             <div class="container">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
